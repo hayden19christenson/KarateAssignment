@@ -1,0 +1,22 @@
+.center{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+h2{
+    text-align: center;
+}
+.form{
+    background-color:lightskyblue;
+    padding:50px;
+}
+.button{
+    background-color:#201f1f;
+    color:white;
+    border:none;
+    padding:5px 20px 5px 20px;
+    border-radius:15px;
+}
+.button:hover{
+    background-color:#3b3b3b
+}
