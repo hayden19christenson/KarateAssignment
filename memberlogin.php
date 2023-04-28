@@ -21,7 +21,7 @@ include 'connect.php';
 $username = $_POST['username'];
 $password = $_POST['password'];
 // Get data from the form
-$fn = "SELECT First_Name, Last_Name FROM Members WHERE Username='$username' AND Password='$password'";
+$fn = "SELECT First_Name, Last_Name, Username, ID FROM Members WHERE Username='$username' AND Password='$password'";
 // Issue the query
 $r = $database->query($fn);
 
@@ -31,6 +31,8 @@ if ( $r->num_rows > 0 )
         
         $_SESSION['FirstName'] = $row['First_Name'];
         $_SESSION['LastName'] = $row['Last_Name'];
+        $_SESSION['Username'] = $row['Username'];
+        $_SESSION['ID'] = $row['ID'];
         header("Location: memberspage.php");
     }
    

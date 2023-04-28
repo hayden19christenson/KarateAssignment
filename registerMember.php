@@ -27,13 +27,18 @@ if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
     {
         $errors[] = 'Username already registered' ;
                 #move to view page
+        header("Location: newmember.html");
         echo 'Username already exists';
      	//exit();//Output a message and terminate the current script
     }
 else
   {
+  if($un == '' || $ln == '' || $fn == '' || $ph == '' || $p == '' ){
+    header("Location: newmember.html");
+  }else{
 $sql="INSERT INTO Members(Username, Last_Name, First_Name, Phone, Date_Joined, Password)VALUES('$un', '$ln', '$fn', '$ph', '$date', '$p')";
 // Issue the query
+
 $result = $database->query($sql);
 
 //check if query successful 
@@ -48,4 +53,5 @@ else
 {
 $errors[] = 'ERROR';
 }
+  }
   }  ?>

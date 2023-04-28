@@ -16,16 +16,15 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
     <div class="container">
-        <br/> 
-          <?php
+        <br/>   
+        <?php
           session_start();
             if(isset($_SESSION['FirstName'])) {
-              echo $_SESSION['FirstName'];
-              echo $_SESSION['LastName'];
+              echo '<h4>' . $_SESSION['FirstName'] . ' ' . $_SESSION['LastName'] . '</h4>';
               }
-        ?>
+        ?> 
         <h2>Member Information</h2>
-     
+
         <div class="center">
         <table class="table tableWidth">
             <thead>
@@ -37,12 +36,30 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td >Kalvin</td>
-                <td>Johnson</td>
-                <td>320-454-3423</td>
-                <td>4/28/2023</td>
-              </tr>
+              <?php
+
+                include 'connect.php';// include connection to MySQL Server
+
+                session_start();
+                # Initialize an error array.
+                $errors = array();
+
+                $un = $_SESSION['Username'];
+                $q = "SELECT * FROM Members WHERE Username='$un'" ;
+                // Issue the query
+                $r = $database->query($q);
+
+                if ( $r->num_rows > 0 )
+                {
+                    while($row = $r->fetch_assoc()){
+                      echo '<tr>' . '<td>' . $row['First_Name'] . '</td>'
+                      . '<td>' . $row['Last_Name'] . '</td>'
+                      . '<td>' . $row['Phone'] . '</td>'
+                      . '<td>' . $row['Date_Joined'] . '</td>' . '</tr>';
+                    }
+                }
+
+              ?>
             </tbody>
           </table>
           </div>
@@ -58,14 +75,66 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td >4/28/2023</td>
-                <td>$420.69</td>
-              </tr>
+              <?php
+
+                include 'connect.php';// include connection to MySQL Server
+
+                session_start();
+                # Initialize an error array.
+                $errors = array();
+
+                $ID = $_SESSION['ID'];
+                $q = "SELECT Payment_Date, Amount FROM Payments WHERE Member_Id=$ID";
+                $r = $database->query($q);
+                if ( $r->num_rows > 0 )
+                {
+                  while($row = $r->fetch_assoc()){
+                    echo '<tr>' . '<td>' . $row['Payment_Date'] . '</td>'
+                    . '<td>' . $row['Amount'] . '</td>' . '</tr>';
+                  }
+                }
+
+              ?>
             </tbody>
           </table>
         </div>
         <br/><br/>
+
+        <h2>Enrollments</h2>
+          <div class="center">
+          <table class="table tableWidth">
+            <thead>
+              <tr>
+                <th scope="col">Program Name</th>
+                <th scope="col">Instructor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+
+                include 'connect.php';// include connection to MySQL Server
+
+                session_start();
+                # Initialize an error array.
+                $errors = array();
+
+                $ID = $_SESSION['ID'];
+                $q = "SELECT ProgramName, InstructorName FROM Enrollments AS en JOIN Instructors AS ins ON ins.ID = en.Instructor_Id WHERE Member_Id=$ID";
+                $r = $database->query($q);
+                if ( $r->num_rows > 0 )
+                {
+                  while($row = $r->fetch_assoc()){
+                    echo '<tr>' . '<td>' . $row['ProgramName'] . '</td>'
+                    . '<td>' . $row['InstructorName'] . '</td>' . '</tr>';
+                  }
+                }
+
+              ?>
+            </tbody>
+          </table>
+        </div>
+        <br/><br/>
+
         <div class="center">
             <a href="karateregistration.html" class="button">Register for Karate</a>
         </div>
