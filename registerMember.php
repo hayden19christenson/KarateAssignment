@@ -42,6 +42,7 @@ if($result)
 #move to view page
 	echo 'Member added';
      	exit();//Output a message and terminate the current script
+  header("Location: memberlogin.php");
 }
 else 
 {
