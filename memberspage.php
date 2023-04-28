@@ -16,6 +16,7 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
     <div class="container">
+      <?php include('header.html') ?>
         <br/> 
           <?php
           session_start();
@@ -24,9 +25,8 @@
               echo $_SESSION['LastName'];
               }
         ?>
+        <div class="center mt-60">
         <h2>Member Information</h2>
-     
-        <div class="center">
         <table class="table tableWidth">
             <thead>
               <tr>
@@ -69,6 +69,7 @@
         <div class="center">
             <a href="karateregistration.html" class="button">Register for Karate</a>
         </div>
+        <?php include('footer.html') ?>
     </div>
 </body>
 
