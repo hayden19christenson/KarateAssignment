@@ -47,7 +47,9 @@ $database->close();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
-    <div class="center container">
+    <div class="container">
+        <?php include('header.html') ?>
+        <div class="center mt-60">
         <form id="form1" name="form1" method="post" class="form">
             <h2>Login </h2>
             <br />
@@ -66,6 +68,8 @@ $database->close();
                 <a href="newmember.html" class="button">Create an Account</a>
             </div>
         </form>
+        </div>
+        <?php include('footer.html') ?>
     </div>
 </body>
 
