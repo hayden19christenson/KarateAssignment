@@ -7,13 +7,16 @@
     justify-content:center;
     align-items:center;
 }
+.h-full{
+    height:100%;
+}
 .container{
     background: lightskyblue no-repeat center center fixed;
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
-    min-height:100vh;
+    min-height:calc(100vh-60px);
     min-width:100vw;
     background-size: cover;
 }
@@ -54,7 +57,22 @@ input{
     color:white;
     width:100vw;
     height:60px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    position:absolute;
+    left:0;
+    top:0;
 } 
+#footer{
+    background-color:#131313;
+    color:white;
+    position: absolute;
+    bottom:0;
+    left:0;
+    width:100vw;
+    height:60px;
+    margin-top:60px;
+    text-align:center;
+}
+#tigerImage{
+    height:500px;
+    width:500px;
+}

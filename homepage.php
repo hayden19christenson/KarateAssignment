@@ -15,8 +15,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
-    <div id="header">
-        <h2>360 Rotating Tiger Kickz</h2>
+
+    <div class="container">
+        <?php include('header.html') ?>
+        <div class="centerVertical h-full">
+            <img id="tigerImage" src="./assets/tiger.png">
+            <button onclick="window.location.href = 'memberlogin.html';" class="button">Login</button>
+            <button onclick="window.location.href = 'newmember.html';" class="button">Sign Up</button>
+          <?php include('footer.html') ?>
+        </div>
+    </div>
     </div>
 </body>
+
 </html>
