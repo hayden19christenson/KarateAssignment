@@ -15,7 +15,6 @@
 <?php
 
 session_start();
-session_destroy();
 include 'connect.php';
 
 $username = $_POST['username'];
@@ -28,7 +27,7 @@ $r = $database->query($fn);
 if ( $r->num_rows > 0 )
 {
     while($row = $r->fetch_assoc()){
-        
+        session_unset();
         $_SESSION['FirstName'] = $row['First_Name'];
         $_SESSION['LastName'] = $row['Last_Name'];
         $_SESSION['Username'] = $row['Username'];
