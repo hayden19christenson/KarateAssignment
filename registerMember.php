@@ -9,7 +9,7 @@ if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
   $un = $_POST[ 'username' ];
   $ln = $_POST[ 'lname' ];
   $fn = $_POST[ 'fname' ];
-  $ph = $_POST[ 'phone ' ];
+  $ph = (int)$_POST[ 'phone' ];
   $date = date("y-m-d h:i:s"); //date time
   $p = $_POST[ 'password' ];
 
@@ -27,16 +27,16 @@ if ( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' )
     {
         $errors[] = 'Username already registered' ;
                 #move to view page
-        header("Location: newmember.html");
+        header("Location: newmember.php");
         echo 'Username already exists';
      	//exit();//Output a message and terminate the current script
     }
 else
   {
-  if($un == '' || $ln == '' || $fn == '' || $ph == '' || $p == '' ){
-    header("Location: newmember.html");
+  if($un == '' || $ln == '' || $fn == '' || $p == '' ){
+    header("Location: newmember.php");
   }else{
-$sql="INSERT INTO Members(Username, Last_Name, First_Name, Phone, Date_Joined, Password)VALUES('$un', '$ln', '$fn', '$ph', '$date', '$p')";
+$sql="INSERT INTO Members (Username, Last_Name, First_Name, Phone, Date_Joined, Password) VALUES ('$un', '$ln', '$fn', $ph, '$date', '$p')";
 // Issue the query
 
 $result = $database->query($sql);
@@ -46,7 +46,6 @@ if($result)
 {
 #move to view page
 	echo 'Member added';
-     	exit();//Output a message and terminate the current script
   header("Location: memberlogin.php");
 }
 else 

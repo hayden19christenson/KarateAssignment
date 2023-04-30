@@ -15,7 +15,7 @@
 <?php
 
 session_start();
-
+session_destroy();
 include 'connect.php';
 
 $username = $_POST['username'];
@@ -33,7 +33,12 @@ if ( $r->num_rows > 0 )
         $_SESSION['LastName'] = $row['Last_Name'];
         $_SESSION['Username'] = $row['Username'];
         $_SESSION['ID'] = $row['ID'];
-        header("Location: memberspage.php");
+        if( $username == 'admin' && $password == 'password'){
+            header("Location: adminpage.php");
+        }else{
+            header("Location: memberspage.php");
+        }
+        
     }
    
    
@@ -65,7 +70,7 @@ $database->close();
             <br/>
             <div class="centerVertical">
                 New Member?
-                <a href="newmember.html" class="button">Create an Account</a>
+                <a href="registerMember.php" class="button">Create an Account</a>
             </div>
         </form>
         </div>

@@ -95,10 +95,24 @@
         <div>
           Select Instructor
           <select name="instructor" id="instructor">
-            <option value="1">Amberg</option>
-            <option value="2">Christenson</option>
-            <option value="3">Hexum</option>
-            <option value="4">Hurt</option>
+            <?php
+
+              include 'connect.php';// include connection to MySQL Server
+
+              session_start();
+              # Initialize an error array.
+              $errors = array();
+
+              $q = "SELECT * FROM Instructors";
+              $r = $database->query($q);
+              if ( $r->num_rows > 0 )
+              {
+              while($row = $r->fetch_assoc()){
+                  echo "<option value='" . $row['ID'] . "'>" . $row['InstructorName'] . "</option>";
+              }
+              }
+
+            ?>
           </select>
         </div>
         <br />
