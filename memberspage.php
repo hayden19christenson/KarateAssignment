@@ -136,16 +136,13 @@
             </tbody>
           </table>
         </div>
-        <br/><br/>
 
-        <div class="center">
+        <div class="center bg-blue">
             <a href="karateregistration.php" class="button">Register for Karate</a>
             <form action="logout.php">
               <button type="submit" class="button">Logout</button>
             </form>
         </div>
-        
-        <?php include('footer.html') ?>
     </div>
 </body>
 
