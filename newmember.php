@@ -20,6 +20,7 @@
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
       crossorigin="anonymous"
     ></script>
+    <?php include('header.html') ?>
     <div class="center container">
       <form
         id="form1"
@@ -51,5 +52,6 @@
         </div>
       </form>
     </div>
+    <?php include('footer.html') ?>
   </body>
 </html>

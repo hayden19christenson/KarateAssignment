@@ -47,73 +47,109 @@ function filterTable($query)
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Name</th>
+                        <th scope="col">Instructor Name</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Mike Tyson</td>
-                        <td><button class="button">Delete</button></td>
-                    </tr>
+                <?php
+
+                    include 'connect.php';// include connection to MySQL Server
+
+                    session_start();
+                    # Initialize an error array.
+                    $errors = array();
+
+                    $ID = $_SESSION['ID'];
+                    $q = "SELECT ID, InstructorName FROM Instructors";
+                    $r = $database->query($q);
+                    if ( $r->num_rows > 0 )
+                    {
+                    while($row = $r->fetch_assoc()){
+                        echo '<tr>' . '<td>' . $row['ID'] . '</td>'
+                        . '<td>' . $row['InstructorName'] . '</td>' . '</tr>';
+                    }
+                    }
+
+                    ?>
                 </tbody>
             </table>
         </div>
         <div class="center">
-        <form id="form1" name="form1" method="post" class="form" action="registerMember.php">
+        <form id="form1" name="form1" method="post" class="form" action="registerInstructor.php">
             <h2>Add Instructor</h2>
             <h4>Name</h4>
             <input name="iname" type="text" id="iname" size="40" />
             <div class="center">
-                <input type="submit" name="Submit" value="Submit" class="button" />
+                <input type="submit" name="Submit" value="Add" class="button" />
+            </div>
+        </form>
+        <form id="form1" name="form1" method="post" class="form" action="DeleteInstructor.php">
+            <h2>Delete Instructor</h2>
+            <h4>Name</h4>
+            <input name="iname" type="text" id="iname" size="40" />
+            <div class="center">
+                <input type="submit" name="Submit" value="Delete" class="button" />
             </div>
         </form>
     </div>
         <br /><br />
-        <div class="center">
-            <input type="text" name="valueToSearch" placeholder="Value To Search"><br><br>
-            <input type="submit" name="search" value="Filter"><br><br>
-        </div>
+        
         <h2>Members</h2>
         <div class="center">
+            <form action="updateMemberFilter.php" method="post">
+            <div class="center">
+            <input type="text" name="ID" placeholder="ID/LastName"><br><br>
+            <input type="submit" name="search" value="Filter"><br><br>
+        </div>
             <table class="table tableWidth">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col"></th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Phone</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php while($row = mysqli_fetch_array($search_result)):?>
-                    <tr>
-                        <td>1</td>
-                        <td>Johnson</td>
-                        <td><button class='button'>Delete</button></td>
-                    </tr>
-                    <?php endwhile;?>
+                <?php
+
+                    include 'connect.php';// include connection to MySQL Server
+
+                    session_start();
+                    # Initialize an error array.
+                    $errors = array();
+
+                    $ID = $_SESSION['IDFilter'];
+
+                    if($ID != ''){
+                        $q = "SELECT * FROM Members WHERE Username != 'admin' AND (Last_Name LIKE '%$ID%' OR ID = '$ID')";
+                    }else{                   
+                        $q = "SELECT * FROM Members WHERE Username != 'admin'";
+                    }
+                    
+                    $r = $database->query($q);
+                    if ( $r->num_rows > 0 )
+                    {
+                    while($row = $r->fetch_assoc()){
+                        echo '<tr>' . '<td>' . $row['ID'] . '</td>'
+                        . '<td>' . $row['Username'] . '</td>'
+                        . '<td>' . $row['First_Name'] . ' ' . $row['Last_Name'] . '</td>'
+                        . '<td>' . $row['Phone'] . '</td>' . '</tr>';
+                    }
+                    }
+
+                    ?>
                 </tbody>
             </table>
+            
+        </form>
         </div>
         <div class="center bg-blue w-full">
-            <form id="form1" name="form1" method="post" class="form" action="registerMember.php">
-                <h2>Add Member</h2>
-                <h4>Username</h4>
-                <input name="username" type="text" id="username" size="40" />
-                <h4>Last Name</h4>
-                <input name="lname" type="text" id="lname" size="40" />
-                <h4>First Name</h4>
-                <input name="fname" type="text" id="fname" size="40" />
-                <h4>Phone</h4>
-                <input name="phone" type="text" id="phone" size="40" />
-                <h4>Password</h4>
-                <input name="password" type="text" id="password" size="40" />
-                <div class="center">
-                    <input type="submit" name="Submit" value="Submit" class="button" />
-                </div>
-            </form>
-            <form id="form1" name="form1" method="post" class="form" action="registerMember.php">
+            <div class="centerVertical">
+                <a href="registerMember.php" class="button">Add Member</a>
+            </div>
+            <form id="form1" name="form1" method="post" class="form" action="editMember.php">
                 <h2>Edit Member</h2>
                 <h4>ID</h4>
                 <input name="ID" type="text" id="ID" size="40" />
@@ -128,7 +164,7 @@ function filterTable($query)
                 <h4>Password</h4>
                 <input name="password" type="text" id="password" size="40" />
                 <div class="center">
-                    <input type="submit" name="Submit" value="Submit" class="button" />
+                    <input type="submit" name="Submit" value="Update" class="button" />
                 </div>
             </form>
         </div>

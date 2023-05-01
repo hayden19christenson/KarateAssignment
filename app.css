@@ -4,6 +4,7 @@
 }
 body{
     overflow-x:hidden;
+    margin: auto;
 }
 .centerVertical{
     display:flex;

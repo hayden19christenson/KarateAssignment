@@ -21,7 +21,7 @@
         <div class="centerVertical h-full">
             <img id="tigerImage" src="./assets/tiger.png">
             <button onclick="window.location.href = 'memberlogin.php';" class="button">Login</button>
-            <button onclick="window.location.href = 'newmember.html';" class="button">Sign Up</button>
+            <button onclick="window.location.href = 'newmember.php';" class="button">Sign Up</button>
           <?php include('footer.html') ?>
         </div>
         <div id="footer">
