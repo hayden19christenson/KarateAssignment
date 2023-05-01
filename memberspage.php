@@ -20,6 +20,7 @@
     <?php include('header.html') ?>
         <br/>   
         <br/>
+        <div class="center">
         <?php
           session_start();
             if(isset($_SESSION['FirstName'])) {
@@ -27,8 +28,6 @@
               }
         ?> 
         <h2>Member Information</h2>
-
-        <div class="center">
         <table class="table tableWidth">
             <thead>
               <tr>
