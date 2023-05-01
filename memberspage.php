@@ -19,6 +19,7 @@
         <br/>
     <?php include('header.html') ?>
         <br/>   
+        <br/>
         <?php
           session_start();
             if(isset($_SESSION['FirstName'])) {
