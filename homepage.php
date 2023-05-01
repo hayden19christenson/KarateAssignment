@@ -24,10 +24,6 @@
             <button onclick="window.location.href = 'newmember.php';" class="button">Sign Up</button>
           <?php include('footer.html') ?>
         </div>
-        <div id="footer">
-            <h5>Enroll in Karate School Today!&emsp; </h5>
-            <h5> 360 Rotating Tiger Kickz </h5>
-        </div>
     </div>
     </div>
 </body>

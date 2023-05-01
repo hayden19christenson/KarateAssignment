@@ -20,7 +20,8 @@
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
       crossorigin="anonymous"
     ></script>
-    <div class="container">
+    <div class="container centerVertical">
+      <?php include('header.html') ?>
       <form
         action="registerKarate.php"
         id="enrollForm"
@@ -120,6 +121,7 @@
           <input type="submit" name="Submit" value="Submit" class="button" />
         </div>
       </form>
+      <?php include('footer.html') ?>
     </div>
   </body>
 </html>

@@ -20,8 +20,9 @@
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
       crossorigin="anonymous"
     ></script>
-    <?php include('header.html') ?>
-    <div class="center container">
+    
+    <div class="centerVertical container">
+        <?php include('header.html') ?>
       <form
         id="form1"
         name="form1"
@@ -32,7 +33,7 @@
         <h2>New Member</h2>
         <br />
         <h4>Username</h4>
-        <input name="username" type="text" id="username" size="40" />
+        <input name="username" type="text" id="username" size="40" maxLength="10"/>
         <h4>Last Name</h4>
         <input name="lname" type="text" id="lname" size="40" />
         <h4>First Name</h4>
@@ -40,7 +41,7 @@
         <h4>Phone</h4>
         <input name="phone" type="text" id="phone" size="40" />
         <h4>Password</h4>
-        <input name="password" type="text" id="password" size="40" />
+        <input name="password" type="text" id="password" size="40" maxLength="10"/>
         <br /><br />
         <div class="center">
           <input type="submit" name="Submit" value="Submit" class="button" />
@@ -51,7 +52,8 @@
           <a href="memberlogin.php" class="button">Login Instead</a>
         </div>
       </form>
+      <?php include('footer.html') ?>
     </div>
-    <?php include('footer.html') ?>
+    
   </body>
 </html>
